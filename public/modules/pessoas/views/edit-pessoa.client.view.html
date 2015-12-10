@@ -1,6 +1,6 @@
 <section data-ng-controller="PessoasController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Pessoa</h1>
+        <h1>Editar Pessoa</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
@@ -8,8 +8,194 @@
                 <div class="form-group">
                     <label class="control-label" for="name">Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="pessoa.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="pessoa.nome" id="nome" class="form-control" >
                     </div>
+                    <label class="control-label" for="sobrenome">Sobrenome</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="pessoa.sobrenome" id="sobrenome" class="form-control">
+                    </div>   
+
+                    <label class="control-label" >CPF</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="pessoa.cpf" id="cpf" class="form-control" ui-mask="999.999.999-99" required>
+                    </div>
+                    
+                    <label class="control-label" >Identidade</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.identidade.nr" id="Identidade" class="form-control"  ui-mask="99999999-9">
+                    </div>
+                    
+                    <label class="control-label" >Data de Expedição</label>
+                    <div class="controls">    
+                        <input type="date" data-ng-model="pessoa.identidade.dataExpedicao" id="DataExpedicao" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999" maxlenght="10">
+                    </div>
+
+                    <label class="control-label" >Órgão Expedidor</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="pessoa.identidade.orgaoExpedidor" id="orgaoExpedidor" class="form-control" >
+                    </div>
+                    
+                    <label class="control-label">Data de Nascimento</label>
+                    <div class="controls">    
+                        <input type="date" data-ng-model="pessoa.dataNascimento" id="dataNascimento" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
+                    </div>
+                    
+                    <label class="control-label" >Email</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.email" id="email" class="form-control" name="email"> 
+                    </div>
+                    
+                    <label class="control-label" >Logradouro</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.logradouro" id="logradouro" class="form-control" >
+                    </div>
+                    
+                    <label class="control-label" >Número</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.nr" id="Numero" class="form-control" >
+                    </div>    
+
+                    <label class="control-label" >Complemento</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="pessoa.endereco.complemento" id="complemento" class="form-control" >
+                    </div>
+                    
+                    <label class="control-label" >CEP</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.cep" id="cep" class="form-control" ui-mask="99999-999">
+                    </div>
+                    
+                    <label class="control-label" >Bairro</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.bairro" id="bairro" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Cidade</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.cidade" id="cidade" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Estado</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.endereco.estado" id="estado" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Nome do Pai</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.pai" id="pai" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Nome da Mãe</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.mae" id="mae" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Telefone Residencial</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.telefone.residencia" id="telefone" class="form-control" ui-mask="(99)9999-9999">
+                    </div>
+                    
+                    <label class="control-label" >Telefone Celular</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.telefone.celular" id="celular" class="form-control" 
+                        ui-mask="(99)9999-9999?9">
+                    </div>
+                    
+                    <label class="control-label" >Telefone do Trabalho</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.telefone.trabalho" id="trabalho" class="form-control" ui-mask="(99)9999-9999">
+                    </div>
+                    
+                    <label class="control-label" >Número da Carteira do Trabalho</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.ctps.nr" id="numeroCarteira" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Série</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.ctps.serie" id="serieCarteira" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Estado Civil</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.estadoCivil" id="estadoCivil" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Regime</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.estadoCivil.regime" id="regimeEstadoCivil" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Nome do Cônjuge</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.nomeConjuge" id="conjuge" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >PIS PASEP</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.pisPasep" id="pisPasep" class="form-control" >
+                    </div>
+                    
+                    <label class="control-label" >INSS</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.inss" id="inss" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Nacionalidade</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.nacionalidade" id="nacionalidade" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Naturalidade</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.naturalidade" id="naturalidade" class="form-control" >
+                    </div>
+                    
+                    <label class="control-label" >Percentual (%)</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.percentual" id="percentual" class="form-control">
+                    </dvi>
+                    
+                    <label class="control-label" >Data de Admissão</label>
+                    <div class="controls">    
+                        <input type="date" data-ng-model="pessoa.dataAdmissao" id="dataAdmissao" class="form-control"  value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
+                    </div>
+                    
+                    <label class="control-label" >Data de Demissão</label>
+                    <div class="controls">    
+                        <input type="date" data-ng-model="pessoa.dataDemissao" id="dataDemissao" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
+                    </div>
+
+                    <label class="control-label" >Empresa Cartão de Milhagem</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.cartaoMilhas.empresa" id="empresa" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Nome</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.cartaoMilhas.nome" id="cartaoNome" class="form-control">
+                    </div>
+                    
+                    <label class="control-label" >Número Cartão de Milhagem</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.cartaoMilhas.nr" id="numeroCartao" class="form-control">
+                    </div>
+
+                    <label class="control-label" >Nome Agência Bancária</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.banco.nome" id="nomeAgencia" class="form-control">
+                    </div>
+
+                    <label class="control-label" >Número Agência Bancária</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.banco.agencia" id="agencia" class="form-control">
+                    </div>
+
+                    <label class="control-label" >CC</label>
+                    <div class="controls">    
+                        <input type="text" data-ng-model="pessoa.banco.conta" id="contaCorrente" class="form-control">
+                    </div>
+                </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">

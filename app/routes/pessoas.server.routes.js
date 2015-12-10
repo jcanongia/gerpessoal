@@ -6,8 +6,13 @@ module.exports = function(app) {
 
 	// Pessoas Routes
 	app.route('/pessoas')
-		.get(pessoas.list)
+		.get(users.requiresLogin, pessoas.list)
+		//.get(users.requiresLogin, pessoas.hasAuthorization, pessoas.list)
 		.post(users.requiresLogin, pessoas.create);
+
+	app.route('/pessoas/create')
+		.get(users.requiresLogin)
+		.post(users.requiresLogin, pessoas.create);	
 
 	app.route('/pessoas/:pessoaId')
 		.get(pessoas.read)
