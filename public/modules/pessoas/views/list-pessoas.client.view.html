@@ -22,7 +22,7 @@
           <th>Email</th>
           <th>CPF</th>
        </tr>
-       
+
        <tr ng-repeat = "pessoa in pessoas">
           <td>{{pessoa.nome}}</td>
           <td>{{pessoa.sobrenome}}</td>
@@ -30,8 +30,9 @@
           <td>{{pessoa.cpf}}</td>
           <td><a class="btn btn-primary" href="/#!/pessoas/{{pessoa._id}}/edit">
                 <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-              <a class="btn btn-primary" ng-click="setSelected(pessoa._id)"><!--remove();"--><!--remover o selecionado -->
-                <i class="glyphicon glyphicon-trash"></i></a></td>  
+                <a class="btn btn-primary" data-ng-click="ShowConfirm(pessoa);">
+            			<i class="glyphicon glyphicon-trash"></i>
+            		</a>
        </tr>
     </table>
 
@@ -40,13 +41,4 @@
     	Não há pessoa(s) cadastrada(s) <a href="/#!/pessoas/create">Nova Pessoa</a>?
     </div>
 
-    <!--modal title="Confirmação" visible="showModal">
-      <form role="form">
-        <div class="form-group">
-            <label for="email">Deseja realmente exluir?</label>
-        </div>
-        <button type="submit" class="btn btn-default">Sim</button>
-        <button type="submit" class="btn btn-default" ng-click="!showModal">Não</button>
-      </form>
-    </modal-->
 </section>

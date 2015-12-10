@@ -1,8 +1,8 @@
 'use strict';
 
 // Pessoas controller
-angular.module('pessoas').controller('PessoasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pessoas', '$http', 
-	function($scope, $stateParams, $location, Authentication, Pessoas, $http) {
+angular.module('pessoas').controller('PessoasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pessoas', '$http', '$window',
+	function($scope, $stateParams, $location, Authentication, Pessoas, $http, $window) {
 		$scope.authentication = Authentication;
 
 		// Create new Pessoa
@@ -53,7 +53,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 		$scope.setSelected = function (idSelectedVote) {
 		   $scope.idSelectedVote = idSelectedVote;
 		   console.log(idSelectedVote);
-		   $scope.pessoa = Pessoas.get({ 
+		   $scope.pessoa = Pessoas.get({
 				pessoaId: idSelectedVote
 			});
 		   $scope.pessoa.$remove(function() {
@@ -61,23 +61,26 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 			});
 
 		};
+		$scope.ShowConfirm = function (pessoa) {
+				if ($window.confirm('Confirma apagar o registro de')) {
+					if ( pessoa ) {
+						pessoa.$remove();
 
-		// Remove existing Pessoa
-		$scope.remove = function(pessoa) {
-			if ( pessoa ) { 
-				pessoa.$remove();
-
-				for (var i in $scope.pessoas) {
-					if ($scope.pessoas [i] === pessoa) {
-						$scope.pessoas.splice(i, 1);
+						for (var i in $scope.pessoas) {
+							if ($scope.pessoas [i] === pessoa) {
+								$scope.pessoas.splice(i, 1);
+							}
+						}
+					} else {
+						$scope.pessoa.$remove(function() {
+							$location.path('pessoas');
+						});
 					}
+				} else {
+					console.log('Você Cancelou');
 				}
-			} else {
-				$scope.pessoa.$remove(function() {
-					$location.path('pessoas');
-				});
-			}
 		};
+
 
 		// Update existing Pessoa
 		$scope.update = function() {
@@ -97,7 +100,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 
 		// Find existing Pessoa
 		$scope.findOne = function() {
-			$scope.pessoa = Pessoas.get({ 
+			$scope.pessoa = Pessoas.get({
 				pessoaId: $stateParams.pessoaId
 			});
 		};
