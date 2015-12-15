@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of Pessoas
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
 	Pessoa.find().sort('-created').populate('user', 'nome').exec(function(err, pessoas) {
 		if (err) {
 			return res.status(400).send({
@@ -88,7 +88,7 @@ exports.list = function(req, res) {
 /**
  * Pessoa middleware
  */
-exports.pessoaByID = function(req, res, next, id) { 
+exports.pessoaByID = function(req, res, next, id) {
 	Pessoa.findById(id).populate('user', 'nome').exec(function(err, pessoa) {
 		if (err) return next(err);
 		if (! pessoa) return next(new Error('Failed to load Pessoa ' + id));
@@ -113,7 +113,7 @@ exports.hasAuthorization = function(req, res, next) {
 exports.totalRegistros = function(req, res) {
 	Pessoa.count(function(err, c) {
 		if (err) {
-			return res.status(400).send({
+			return res.status(404).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
