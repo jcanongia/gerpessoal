@@ -17,7 +17,7 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/accounts',
 			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'
 		}).
-		// state('signup', {                                                             //Comentar para produção
+		// state('signup', {                                                             // Comentar para produção
 		// 	url: '/signup',                                                             //Comentar para produção
 		// 	templateUrl: 'modules/users/views/authentication/signup.client.view.html'   //Comentar para produção
 		// }).                                                                           //Comentar para produção
