@@ -32,34 +32,34 @@ var PessoaSchema = new Schema({
 			trim: true
 		},
 		dataExpedicao: {
-			type: Date,
+			type: String,
 			default: ''
 		},
 		orgaoExpedidor: {
-			type: String, 
+			type: String,
 			default: '',
 			trim: true
-		} 
-	},	
+		}
+	},
 	dataNascimento: {
-		type: Date, 
+		type: String,
 		default: ''
-	},	
+	},
 	email: {
 		type: String,
 		default: '',
 		trim: true
-	},	
+	},
 	endereco:{
 		logradouro: {
 			type: String,
 			default: '',
 			trim: true
 		},
-		nr: {
+		nrLogradouro: {
 			type: Number,
 			default: '',
-			trim: true	
+			trim: true
 		},
 		complemento: {
 			type: String,
@@ -86,19 +86,19 @@ var PessoaSchema = new Schema({
 			default: '',
 			trim: true
 		}
-	},	
+	},
 	pai: {
 		type: String,
 		default: '',
 		trim: true
-	},	
+	},
 	mae: {
 		type: String,
 		default: '',
 		trim: true
-	},	
+	},
 	banco: {
-		nome: {
+		nomeBanco: {
 			type: String,
 			default: '',
 			trim: true
@@ -113,12 +113,12 @@ var PessoaSchema = new Schema({
 			default: '',
 			trim: true
 		}
-	},	
+	},
 	nacionalidade: {
 		type: String,
 		default: '',
 		trim: true
-	},	
+	},
 	naturalidade: {
 		type: String,
 		default: '',
@@ -130,11 +130,11 @@ var PessoaSchema = new Schema({
 		trim: true
 	},
 	dataAdmissao: {
-		type: Date,
+		type: String,
 		default: ''
 	},
 	dataDemissao: {
-		type: Date,
+		type: String,
 		default: ''
 	},
 	inss: {
@@ -143,7 +143,7 @@ var PessoaSchema = new Schema({
 		trim: true
 	},
 	ctps: {
-		nr: {
+		nrCtps: {
 			type: String,
 			default: '',
 			trim: true
@@ -188,25 +188,30 @@ var PessoaSchema = new Schema({
 			trim: true
 		}
 	},
+	percentual: {
+		type: String,
+		default: '',
+		trim: true
+	},
 	cartaoMilhas: {
 		empresa: {
 			type: String,
 			default: '',
 			trim: true
 		},
-		nome: {
+		nomeEmpresa: {
 			type: String,
 			default: '',
 			trim: true
 		},
-		nr: {
+		nrCartao: {
 			type: Number,
 			default: '',
 			trim: true
 		}
 	},
 	dependentes: [{
-		nome: {
+		nomeDependente: {
 			type: String,
 			default: '',
 			trim: true
@@ -216,20 +221,20 @@ var PessoaSchema = new Schema({
 			default: '',
 			trim: true
 		},
-		cpf: {
+		cpfDependente: {
 			type: String,
 			default: '',
 			trim: true
 		},
-		dataNascimento: {
-			type: Date,
+		dataNascimentoDependente: {
+			type: String,
 			default: ''
 		}
 	}],
 	created: {
 		type: Date,
 		default: Date.now
-	},	
+	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'

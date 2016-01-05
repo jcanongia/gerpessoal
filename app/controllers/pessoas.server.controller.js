@@ -113,7 +113,7 @@ exports.hasAuthorization = function(req, res, next) {
 exports.totalRegistros = function(req, res) {
 	Pessoa.count(function(err, c) {
 		if (err) {
-			return res.status(404).send({
+			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {

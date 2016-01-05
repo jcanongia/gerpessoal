@@ -8,6 +8,7 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
+	var core = require('../../app/controllers/core.server.controller');
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
@@ -21,9 +22,11 @@ module.exports = function(app) {
 	app.route('/auth/reset/:token').post(users.reset);
 
 	// Setting up the users authentication api
-	app.route('/auth/signup').post(users.signup);
+	// app.route('/auth/signup').post(users.signup); //Comentar para produção
 	app.route('/auth/signin').post(users.signin);
 	app.route('/auth/signout').get(users.signout);
+
+	app.route('/auth/signin').get(core.index);
 
 	// Setting the facebook oauth routes
 	app.route('/auth/facebook').get(passport.authenticate('facebook', {
