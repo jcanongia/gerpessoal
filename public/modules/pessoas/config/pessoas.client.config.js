@@ -6,6 +6,6 @@ angular.module('pessoas').run(['Menus',
 		// Set top bar menu items
 		Menus.addMenuItem('topbar', 'Pessoas', 'pessoas', 'dropdown', '/pessoas(/create)?');
 		Menus.addSubMenuItem('topbar', 'pessoas', 'Listar Pessoas', 'pessoas');
-		Menus.addSubMenuItem('topbar', 'pessoas', 'Cadastrar Dados Pessoais', 'pessoas/create');
+		Menus.addSubMenuItem('topbar', 'pessoas', 'Cadastrar Pessoas', 'pessoas/create');
 	}
 ]);

@@ -11,13 +11,7 @@
 		<a class="btn btn-primary" data-ng-click="ShowConfirm();">
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
+		<button class="btn btn-primary" onclick="parent.location='/#!/pessoas/create'" title="Inserir Pessoa">
+		<img src="/modules/core/img/exports/plus-circle.png" alt=""></button>
 	</div>
-	<small>
-		<em class="text-muted">
-			Criado em
-			<span data-ng-bind="pessoa.created | date: 'dd/MM/yyyy'"></span>
-			por
-			<span data-ng-bind="pessoa.user.displayName"></span>
-		</em>
-	</small>
 </section>

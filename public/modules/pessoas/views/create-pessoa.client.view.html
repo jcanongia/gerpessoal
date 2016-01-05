@@ -3,220 +3,474 @@
         <h1>Dados Pessoais</h1>
     </div>
     <div class="col-md-12">
-        <form name="myForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+        <form name="myForm" class="form-horizontal" data-ng-submit="create(pessoa)" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="nome">Nome</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="nome" id="nome" name="nome" class="form-control"  ng-required="true">
-                    </div>
-                    <div class="alert alert-danger" ng-show="myForm.nome.$invalid && myForm.nome.$dirty">
-                        Nome é um campo obrigatório.
-                    </div>    
+                    <ul class="tabs">
 
-                    <label class="control-label" for="sobrenome">Sobrenome</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="sobrenome" id="sobrenome" class="form-control" ng-required="true">
-                    </div>
-                    <div class="alert alert-danger" ng-show="myForm.sobrenome.$invalid && myForm.sobrenome.$dirty">
-                        Sobrenome é um campo obrigatório.
-                    </div>    
+                      <!-- tab de dados -->
+          			        <li>
+          			          <input type="radio" checked name="tabs" id="tab1">
 
-                    <label class="control-label" >CPF</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="cpf" id="cpf" class="form-control" ui-mask="999.999.999-99" required>
-                    </div>
-                    <div class="alert alert-danger" ng-show="myForm.cpf.$invalid && myForm.cpf.$dirty">
-                        CPF é um campo obrigatório.
-                    </div>
-                    
-                    <label class="control-label" >Identidade</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="identidade.nr" id="Identidade" class="form-control"  ui-mask="99999999-9">
-                    </div>
-                    
-                    <label class="control-label" >Data de Expedição</label>
-                    <div class="controls">    
-                        <input type="date" data-ng-model="identidade.dataExpedicao" id="DataExpedicao" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999" maxlenght="10">
-                    </div>
+          			          <label for="tab1">Pessoais</label>
+          			          <div id="tab-content1" class="tab-content animated fadeIn">
+                              <label for="nome">Nome*</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="nome" id="nome" name="nome" class="form-control"
+                                  ng-blur="nameValidate(nome)">
+                              </div>
 
-                    <label class="control-label" >Órgão Expedidor</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="identidade.orgaoExpedidor" id="orgaoExpedidor" class="form-control" >
-                    </div>
-                    
-                    <label class="control-label">Data de Nascimento</label>
-                    <div class="controls">    
-                        <input type="date" data-ng-model="dataNascimento" id="dataNascimento" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
-                    </div>
-                    
-                    <label class="control-label" >Email</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="email" id="email" class="form-control" name="email"> <!--ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"-->
-                    </div>
-                    <!--div ng-messages="myForm.email.$error" ng-messages-include="error-messages">
-                        <div ng-message="pattern">Insira um email válido!</div>
-                    </div-->
-                    
-                    <label class="control-label" >Logradouro</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.logradouro" id="logradouro" class="form-control" >
-                    </div>
-                    
-                    <label class="control-label" >Número</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.nr" id="Numero" class="form-control" >
-                    </div>    
+                              <div class="alert alert-danger" ng-show="!firstNameValidate">
+                                  Nome é um campo obrigatório.
+                              </div>
 
-                    <label class="control-label" >Complemento</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="endereco.complemento" id="complemento" class="form-control" >
-                    </div>
-                    
-                    <label class="control-label" >CEP</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.cep" id="cep" class="form-control" ui-mask="99999-999">
-                    </div>
-                    
-                    <label class="control-label" >Bairro</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.bairro" id="bairro" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Cidade</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.cidade" id="cidade" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Estado</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="endereco.estado" id="estado" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Nome do Pai</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="pai" id="pai" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Nome da Mãe</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="mae" id="mae" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Telefone Residencial</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="telefone.residencia" id="telefone" class="form-control" ui-mask="(99)9999-9999">
-                    </div>
-                    
-                    <label class="control-label" >Telefone Celular</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="telefone.celular" id="celular" class="form-control" 
-                        ui-mask="(99)9999-9999?9">
-                    </div>
-                    
-                    <label class="control-label" >Telefone do Trabalho</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="telefone.trabalho" id="trabalho" class="form-control" ui-mask="(99)9999-9999">
-                    </div>
-                    
-                    <label class="control-label" >Número da Carteira do Trabalho</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="ctps.nr" id="numeroCarteira" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Série</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="ctps.serie" id="serieCarteira" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Estado Civil</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="estadoCivil" id="estadoCivil" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Regime</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="estadoCivil.regime" id="regimeEstadoCivil" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Nome do Cônjuge</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="nomeConjuge" id="conjuge" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >PIS PASEP</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="pisPasep" id="pisPasep" class="form-control" >
-                    </div>
-                    
-                    <label class="control-label" >INSS</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="inss" id="inss" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Nacionalidade</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="nacionalidade" id="nacionalidade" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Naturalidade</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="naturalidade" id="naturalidade" class="form-control" >
-                    </div>
-                    
-                    <label class="control-label" >Percentual (%)</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="percentual" id="percentual" class="form-control">
-                    </dvi>
-                    
-                    <label class="control-label" >Data de Admissão</label>
-                    <div class="controls">    
-                        <input type="date" data-ng-model="dataAdmissao" id="dataAdmissao" class="form-control"  value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
-                    </div>
-                    
-                    <label class="control-label" >Data de Demissão</label>
-                    <div class="controls">    
-                        <input type="date" data-ng-model="dataDemissao" id="dataDemissao" class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ui-mask="99/99/9999">
-                    </div>
+                              <label for="sobrenome">Sobrenome*</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="sobrenome" id="sobrenome" class="form-control" name="sobrenome"
+                                  ng-blur="secNameValidate(sobrenome)">
+                              </div>
+                              <div class="alert alert-danger" ng-show="!secondNameValidate">
+                                  Sobrenome é um campo obrigatório.
+                              </div>
 
-                    <label class="control-label" >Empresa Cartão de Milhagem</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="cartaoMilhas.empresa" id="empresa" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Nome</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="cartaoMilhas.nome" id="cartaoNome" class="form-control">
-                    </div>
-                    
-                    <label class="control-label" >Número Cartão de Milhagem</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="cartaoMilhas.nr" id="numeroCartao" class="form-control">
-                    </div>
+                              <label >Data de Nascimento</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dataNascimento" id="dataNascimento" class="form-control" ui-mask="99/99/9999"
+                                    ng-blur="validateDataNascimento(dataNascimento)">
+                              </div>
 
-                    <label class="control-label" >Nome Agência Bancária</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="banco.nome" id="nomeAgencia" class="form-control">
-                    </div>
+                              <div class="alert alert-danger" ng-show="!dataNascimentoValida">
+                                  Data de Nascimento inválida.
+                              </div>
 
-                    <label class="control-label" >Número Agência Bancária</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="banco.agencia" id="agencia" class="form-control">
-                    </div>
+                              <label>Email</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="email" id="email" class="form-control" name="email"
+                                  ng-blur="validateEmail(email)">
+                              </div>
 
-                    <label class="control-label" >CC</label>
-                    <div class="controls">    
-                        <input type="text" data-ng-model="banco.conta" id="contaCorrente" class="form-control">
-                    </div>
-                </div>
+                              <div class="alert alert-danger" ng-show="!emailValidate">
+                                  Email inválido.
+                              </div>
 
-                <br>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="alert alert-danger"> <!--class="text-danger"-->
+                              <label >Nacionalidade</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="nacionalidade" id="nacionalidade" class="form-control">
+                              </div>
+
+                              <label >Naturalidade</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="naturalidade" id="naturalidade" class="form-control" >
+                              </div>
+
+                              <div>
+                                 <label>* Campo Obrigatório</label>
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de endereco -->
+          			        <li>
+          			          <input type="radio" name="tabs" id="tab2">
+          			          <label for="tab2">Endereço</label>
+          			          <div id="tab-content2" class="tab-content animated fadeIn">
+                            <label>Logradouro</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.logradouro" id="logradouro" class="form-control" >
+                            </div>
+
+                            <label>Número</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.nrLogradouro" id="Numero" class="form-control" >
+                            </div>
+
+                            <label>Complemento</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.complemento" id="complemento" class="form-control" >
+                            </div>
+
+                            <label>CEP</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.cep" id="cep" class="form-control" ui-mask="99999-999">
+                            </div>
+
+                            <label>Bairro</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.bairro" id="bairro" class="form-control">
+                            </div>
+
+                            <label >Cidade</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="endereco.cidade" id="cidade" class="form-control">
+                            </div>
+
+                            <label>Estado</label>
+                            <div class="controls">
+                                <select data-ng-model="endereco.estado" class="form-control">
+                                  <option value="">Selecione</option>
+                                  <option value="AC">AC</option>
+                                  <option value="AL">AL</option>
+                                  <option value="AP">AP</option>
+                                  <option value="AM">AM</option>
+                                  <option value="BA">BA</option>
+                                  <option value="CE">CE</option>
+                                  <option value="DF">DF</option>
+                                  <option value="ES">ES</option>
+                                  <option value="GO">GO</option>
+                                  <option value="MA">MA</option>
+                                  <option value="MS">MS</option>
+                                  <option value="MT">MT</option>
+                                  <option value="MG">MG</option>
+                                  <option value="PA">PA</option>
+                                  <option value="PB">PB</option>
+                                  <option value="PR">PR</option>
+                                  <option value="PE">PE</option>
+                                  <option value="PI">PI</option>
+                                  <option value="RJ">RJ</option>
+                                  <option value="RN">RN</option>
+                                  <option value="RS">RS</option>
+                                  <option value="RO">RO</option>
+                                  <option value="RR">RR</option>
+                                  <option value="SC">SC</option>
+                                  <option value="SP">SP</option>
+                                  <option value="SE">SE</option>
+                                  <option value="TO">TO</option>
+                                </select>
+                            </div>
+
+                          </div>
+          			        </li>
+
+                        <!-- tab de dependentes -->
+          			        <li>
+          			          <input type="radio" name="tabs" id="tab3">
+          			          <label for="tab3">Dependentes</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                            <!--label class="control-label" >Possui Dependentes</label>
+                            <div class="controls">
+                                <input type="checkbox" id="possui" class="form-control" data-ng-click="visibity()">
+                            </div-->
+
+                            <div >
+                              <div>
+                              <label >Nome Dependente</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dependentes.nomeDependente" id="nomeDependente" name="nomeDependente" class="form-control">
+                              </div>
+
+                              <label>Parentesco</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dependentes.parentesco" id="parentesco" name="parentesco" class="form-control">
+                              </div>
+
+                              <label>Data de Nascimento</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dependentes.dataNascimentoDependente" id="dataNascimentoDependente" name="dataNascimentoDependente" class="form-control"
+                                  ng-blur="validateDataNascimentoDependente(dependentes.dataNascimentoDependente)" ui-mask="99/99/9999">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!dataNascimentoDependenteValida">
+                                  Data de Nascimento do Dependente inválida.
+                              </div>
+
+                              <label >CPF</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dependentes.cpfDependente" id="cpfDependente" name="cpfDependente" class="form-control"
+                                  ng-blur="validateCPFDependente(dependentes.cpfDependente)" ui-mask="999.999.999-99">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!validoDependente">
+                                  CPF inválido.
+                              </div>
+
+                              <br/>
+
+                              <div class="form-group" ng-show="!rendered">
+                                  <input type="button" class="btn btn-default" ng-click="addArray(dependentes)" value="Adicionar"
+                                  ng-disabled="!dependentes.nomeDependente || !dependentes.parentesco || !dependentes.dataNascimentoDependente">
+                              </div>
+
+                              <div class="form-group" ng-show="rendered">
+                                  <input type="button" class="btn btn-default" ng-click="edtArray(dependentes)" value="Atualizar"
+                                  ng-disabled="!dependentes.nomeDependente || !dependentes.parentesco || !dependentes.dataNascimentoDependente">
+                              </div>
+
+                              <div class="form-group">
+                                  <input type="button" class="btn btn-default" ng-click="clear(dependentes)" value="Limpar">
+                              </div>
+
+                              <table id="dependentesPessoa" class="tabela tabela-bordered tabela-hover tabela-condensed" style="width: 100%">
+                                <thead>
+                                 <tr>
+                                    <th>Nome</th>
+                                    <th>Parentesco</th>
+                                    <th>CPF</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Ações</th>
+
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr ng-repeat = "dep in arrayDependentes">
+                                      <td>{{dep.nomeDependente}}</td>
+                                      <td>{{dep.parentesco}}</td>
+                                      <td>{{dep.cpfDependente}}</td>
+                                      <td>{{dep.dataNascimentoDependente | date: 'dd/MM/yyyy'}}</td>
+                                      <td><a class="btn btn-primary" data-ng-click="selecionado(dep);">
+                                            <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                                          <a class="btn btn-primary" data-ng-click="deletarItemArray(dep)">
+                                            <i class="glyphicon glyphicon-trash"></i></a></td>
+                                 </tr>
+                               </tbody>
+                              </table>
+                          </div>
+          			          </div>
+          			        </li>
+
+                        <!-- tab de documento -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab4">
+          			          <label for="tab4">Documentos</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label >CPF*</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="cpf" id="cpf" class="form-control" ui-mask="999.999.999-99"
+                                    ng-blur="validateCPF(cpf)" maxlength="11" required>
+                              </div>
+                              <div class="alert alert-danger" ng-show="!cpfValidate">
+                                  CPF é um campo obrigatório.
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!valido">
+                                  CPF inválido.
+                              </div>
+
+                              <label >Identidade</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="rg.nrRG" id="Identidade" class="form-control"  ui-mask="99999999-9">
+                              </div>
+
+                              <label >Data de Expedição</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="rg.dataExpedicao" id="DataExpedicao" class="form-control" ui-mask="99/99/9999" maxlenght="10"
+                                  ng-blur="validateData(pessoa.rg.dataExpedicao)">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!dataValida">
+                                  Data de Expedição inválida.
+                              </div>
+
+                              <label  >Órgão Expedidor</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="rg.orgaoExpedidor" id="orgaoExpedidor" class="form-control" >
+                              </div>
+
+                              <label  >Número da Carteira do Trabalho</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="ctps.nrCtps" id="numeroCarteira" class="form-control">
+                              </div>
+
+                              <label >Série</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="ctps.serie" id="serieCarteira" class="form-control">
+                              </div>
+
+                              <label >PIS PASEP</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="pisPasep" id="pisPasep" class="form-control" >
+                              </div>
+
+                              <label >INSS</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="inss" id="inss" class="form-control">
+                              </div>
+
+                              <div>
+                                 <label>* Campo Obrigatório</label>
+                              </div>
+
+                          </div>
+          			        </li>
+
+                        <!-- tab de milhagem -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab5">
+          			          <label for="tab5">Milhagem</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label>Empresa Cartão de Milhagem</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="cartaoMilhas.empresa" id="empresa" class="form-control">
+                              </div>
+
+                              <label >Nome do Cartão</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="cartaoMilhas.nomeEmpresa" id="cartaoNome" class="form-control">
+                              </div>
+
+                              <label>Número Cartão de Milhagem</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="cartaoMilhas.nrCartao" id="numeroCartao" class="form-control">
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de banco -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab6">
+          			          <label for="tab6">Banco</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label >Agência Bancária</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="banco.nomeBanco" id="nomeAgencia" class="form-control">
+                              </div>
+
+                              <label >Número Agência</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="banco.agencia" id="agencia" class="form-control">
+                              </div>
+
+                              <label >Conta Corrente</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="banco.conta" id="contaCorrente" class="form-control">
+                              </div>
+                          </div>
+          			        </li>
+
+
+                        <!-- tab de filiação -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab7">
+          			          <label for="tab7">Filiação</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label >Pai</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="pai" id="pai" class="form-control">
+                              </div>
+
+                              <label >Mãe</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="mae" id="mae" class="form-control">
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de estado civil -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab8">
+          			          <label for="tab8">Estado Civil</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label >Estado Civil</label>
+                              <div class="controls">
+                                  <select data-ng-model="estadoCivil.estado" class="form-control">
+                                    <option value="">Selecione</option>
+                                    <option value="Solteiro(a)">Solteiro(a)</option>
+                                    <option value="Casado(a)">Casado(a)</option>
+                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                    <option value="Viúvo(a)">Viúvo(a)</option>
+                                  </select>
+                              </div>
+
+                              <label >Regime</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="estadoCivil.regime" id="regimeEstadoCivil" class="form-control">
+                              </div>
+
+                              <label >Nome do Cônjuge</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="nomeConjuge" id="conjuge" class="form-control">
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de telefone -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab9">
+          			          <label for="tab9">Telefone</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label >Telefone Residencial</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="telefone.residencia" id="telefone" class="form-control" ui-mask="(99)9999-9999">
+                              </div>
+
+                              <label>Telefone Celular</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="telefone.celular" id="celular" class="form-control"
+                                  ui-mask="(99)9999-9999?9">
+                              </div>
+
+                              <label>Telefone do Trabalho</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="telefone.trabalho" id="trabalho" class="form-control" ui-mask="(99)9999-9999">
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de info funcionario -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab10">
+          			          <label for="tab10">Outras Informações</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <label>Percentual (%)</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="percentual" id="percentual" class="form-control">
+                              </dvi>
+
+                              <label>Data de Admissão</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dataAdmissao" id="dataAdmissao" class="form-control" ui-mask="99/99/9999"
+                                  ng-blur="validateDataAdmissao(dataAdmissao)">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!dataAdmissaoValida">
+                                  Data de Admissão inválida.
+                              </div>
+
+                              <label>Data de Demissão</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="dataDemissao" id="dataDemissao" class="form-control" ui-mask="99/99/9999"
+                                  ng-blur="validateDataDedmissao(dataDemissao)">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!dataDemissaoValida">
+                                  Data de Demissão inválida.
+                              </div>
+                          </div>
+          			        </li>
+
+                        <!-- tab de confirmar -->
+                        <li>
+          			          <input type="radio" name="tabs" id="tab11">
+                          <label for="tab11">Finalizar</label>
+                          <div id="tab-content3" class="tab-content animated fadeIn">
+                              <div class="form-group" style="text-align:center;">
+                                  <input style="text-align-last:center;" type="submit" value="Salvar" class="btn btn-default">
+                              </div>
+                              <div class="form-group" style="text-align:center;">
+                                  <input type="button" onclick="parent.location='/#!/pessoas'" value="Cancelar" class="btn btn-default">
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!firstNameValidate">
+                                  Preencha o campo Nome na aba Dados.
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!secondNameValidate">
+                                  Preencha o campo Sobrenome na aba Dados.
+                              </div>
+
+                              <div class="alert alert-danger" ng-show="!cpfValidate">
+                                  Preencha o campo CPF na aba Documentos.
+                              </div>
+                          </div>
+          			        </li>
+
+          			    </ul>
+
+              </div>
+
+				<!--div data-ng-show="error" class="alert alert-danger" class="text-danger">
 					<strong data-ng-bind="error"></strong>
-				</div>
+				</div-->
+
             </fieldset>
         </form>
     </div>

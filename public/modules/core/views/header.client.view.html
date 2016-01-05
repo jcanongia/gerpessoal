@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="HeaderController"> <!-style="background-color: honeydew"-->
+<div class="container" data-ng-controller="HeaderController"> <!-- style="background-color: honeydew"-->
 	<div class="navbar-header">
 		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
 			<span class="sr-only">Toggle navigation</span>
@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<!--a href="/#!/" class="navbar-brand">JCanongiaMakers</a-->
+		<a href="/#!/" class="navbar-brand">Gerente Pessoal</a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
@@ -24,9 +24,9 @@
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Inscreva-se</a>
-			</li>
+		<!-- <li ui-route="/signup" ng-class="{active: $uiRoute}">     Comentar para Produção -->
+				<!-- <a href="/#!/signup">Inscreva-se</a>                  Comentar para Produção -->
+			<!-- </li>                                                   Comentar para Produção -->
 			<li class="divider-vertical"></li>
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
 				<a href="/#!/signin">Autentique-se</a>
@@ -41,9 +41,9 @@
 					<li>
 						<a href="/#!/settings/profile">Editar Perfil</a>
 					</li>
-					<li>
+					<!--li>
 						<a href="/#!/settings/accounts">Gerenciar Redes Sociais</a>
-					</li>
+					</li-->
 					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Trocar Senha</a>
 					</li>

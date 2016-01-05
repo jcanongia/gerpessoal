@@ -2,43 +2,56 @@
     <div class="page-header">
         <h1>Pessoas</h1>
     </div>
-    <!--div class="list-group">
-        <a data-ng-repeat="pessoa in pessoas" data-ng-href="#!/pessoas/{{pessoa._id}}" class="list-group-item">
-			<h4 class="list-group-item-heading" data-ng-bind="pessoa.nome"></h4>
-            <h4 class="list-group-item-heading" data-ng-bind="pessoa.sobrenome"></h4>
-            <h4 class="list-group-item-heading" data-ng-bind="pessoa.email"></h4>
-            <small class="list-group-item-text">
-                Criado em
-                <span data-ng-bind="pessoa.created | date: 'dd/MM/yyyy'"></span>
-                por
-                <span data-ng-bind="pessoa.user.displayName"></span>
-            </small>
-        </a>
-    </div-->
-    <table class="table table-bordered table-hover table-condensed" style="width: 80%">
+    <div align=right>
+    </br>
+      <button class="btn btn-primary" onclick="parent.location='/#!/pessoas/create'" title="Inserir Pessoa">
+      <img src="/modules/core/img/exports/plus-circle.png" alt=""></button>
+      <button class="btn btn-primary" onClick ="$('#contacts').tableExport({type:'excel',escape:'false'});" title="XLS">
+  			<img src="/modules/core/img/exports/xls.png" alt=""></button>
+  		<button class="btn btn-primary" onClick ="$('#contacts').tableExport({type:'csv',escape:'false'});" title="CSV">
+  			<img src="/modules/core/img/exports/csv.png" alt="" width="24" height="24"></button>
+  		<button class="btn btn-primary" onClick ="$('#contacts').tableExport({type:'pdf',pdfFontSize:'10',tableName:'Cadastrados', escape:'false'});" title="PDF">
+  			<img src="/modules/core/img/exports/pdf.png" alt=""></button>
+    </div>
+    <table id="contacts" class="tabela tabela-bordered tabela-hover tabela-condensed" style="width: 100%"> <!-- class="table table-bordered table-hover table-condensed" -->
+      <thead>
        <tr>
           <th>Nome</th>
           <th>Sobrenome</th>
           <th>Email</th>
           <th>CPF</th>
+          <!--th>Data de Nascimento</th-->
+          <th>Ações</th>
        </tr>
-
+     </thead>
+     <tbody>
        <tr ng-repeat = "pessoa in pessoas">
-          <td>{{pessoa.nome}}</td>
-          <td>{{pessoa.sobrenome}}</td>
-          <td>{{pessoa.email}}</td>
-          <td>{{pessoa.cpf}}</td>
-          <td><a class="btn btn-primary" href="/#!/pessoas/{{pessoa._id}}/edit">
-                <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+            <td>{{pessoa.nome}}</td>
+            <td>{{pessoa.sobrenome}}</td>
+            <td>{{pessoa.email}}</td>
+            <td>{{pessoa.cpf}}</td>
+            <!--td>{{pessoa.dataNascimento | date: 'dd/MM/yyyy'}}</td-->
+            <td><a class="btn btn-primary" href="/#!/pessoas/{{pessoa._id}}/edit">
+                  <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
                 <a class="btn btn-primary" data-ng-click="ShowConfirm(pessoa);">
-            			<i class="glyphicon glyphicon-trash"></i>
-            		</a>
+                  <i class="glyphicon glyphicon-trash"></i></a></td>
        </tr>
+     </tbody>
     </table>
 
     <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
     <div class="alert alert-warning text-center" data-ng-hide="!pessoas.$resolved || pessoas.length">
     	Não há pessoa(s) cadastrada(s) <a href="/#!/pessoas/create">Nova Pessoa</a>?
     </div>
 
+    <!--modal title="Confirmação" visible="showModal">
+      <form role="form">
+        <div class="form-group">
+            <label for="email">Deseja realmente exluir?</label>
+        </div>
+        <button type="submit" class="btn btn-default">Sim</button>
+        <button type="submit" class="btn btn-default" ng-click="!showModal">Não</button>
+      </form>
+    </modal-->
 </section>
