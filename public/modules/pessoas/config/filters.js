@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 // var BrM = require('br-masks');
 
 var m = angular.module('idf.br-filters', []);
