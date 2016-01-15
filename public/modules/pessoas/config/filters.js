@@ -1,5 +1,5 @@
 'use strict';
- 
+
 // var BrM = require('br-masks');
 
 var m = angular.module('idf.br-filters', []);
@@ -15,37 +15,37 @@ m.filter('percentage', ['$filter', function($filter) {
 		return $filter('number')(input * 100, decimals) + '%';
 	};
 }])
-.filter('brCep', [function() {
+.filter('brCep', [function(BrM) {
 	return function(input) {
 		return BrM.cep(input);
 	};
 }])
-.filter('brPhoneNumber', [function() {
+.filter('brPhoneNumber', [function(BrM) {
 	return function(input) {
 		return BrM.phone(input);
 	};
 }])
-.filter('brCpf', [function() {
+.filter('brCpf', [function(BrM) {
 	return function(input) {
 		return BrM.cpf(input);
 	};
 }])
-.filter('brCnpj', [function() {
+.filter('brCnpj', [function(BrM) {
 	return function(input) {
 		return BrM.cnpj(input);
 	};
 }])
-.filter('brCpfCnpj', [function() {
+.filter('brCpfCnpj', [function(BrM) {
 	return function(input) {
 		return BrM.cpfCnpj(input);
 	};
 }])
-.filter('brIe', [function() {
+.filter('brIe', [function(BrM) {
 	return function(input, uf) {
 		return BrM.ie(input,uf);
 	};
 }])
-.filter('finance', ['$locale', function($locale) {
+.filter('finance', ['$locale', function($locale, BrM) {
 	return function(input, currency, decimals) {
 		if (angular.isUndefined(input) || input === null) {
 			return input;
@@ -64,7 +64,7 @@ m.filter('percentage', ['$filter', function($filter) {
 		return currencySym + BrM.finance(input, decimals, decimalDelimiter, thousandsDelimiter);
 	};
 }])
-.filter('nfeAccessKey', [function() {
+.filter('nfeAccessKey', [function(BrM) {
 	return function(input) {
 		return BrM.nfeAccessKey(input);
 	};

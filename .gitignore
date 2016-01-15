@@ -2,26 +2,8 @@
 .nodemonignore
 .sass-cache/
 npm-debug.log
-
-#Retirei "node_modules/" para facilitar a instalação durante fazes iniciais, depois Descomentar
-# node_modules/
-
+node_modules/
 public/lib
 app/tests/coverage/
 .bower-*/
 .idea/
-
-# Arquivos compactados
-*.7z
-*.gz
-*.rar
-*.tar
-*.zip
-
-# Arquivos de Log
-*.log
-
-# Arquivos Automáticos
-.Trashes
-ehthumbs.db
-Thumbs.db

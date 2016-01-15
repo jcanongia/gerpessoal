@@ -19,15 +19,15 @@ var PessoaSchema = new Schema({
 		type: String,
 		default: '',
 		trim: true
-	},	
+	},
 	cpf: {
 		type: String,
 		default: '',
 		trim: true
-	},	
-	identidade: {
-		nr: {
-			type:String, 
+	},
+	rg: {
+		nrRG: {
+			type:String,
 			default: '',
 			trim: true
 		},
@@ -137,6 +137,10 @@ var PessoaSchema = new Schema({
 		type: String,
 		default: ''
 	},
+	grupoSocial: {
+		type: String,
+		default: ''
+	},
 	inss: {
 		type: String,
 		default: '',
@@ -242,3 +246,4 @@ var PessoaSchema = new Schema({
 });
 
 mongoose.model('Pessoa', PessoaSchema);
+

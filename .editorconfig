@@ -1,4 +1,4 @@
-# EditorConfig  is awesome: http://EditorConfig.org
+# EditorConfig is awesome: http://EditorConfig.org
 
 # Howto with your editor:
 #   Sublime: https://github.com/sindresorhus/editorconfig-sublime
@@ -11,7 +11,7 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-# Standard at: https://github.com/felixge/node-style-guide
+# Standard at: https://github.com/felixge/node-style-guide 
 [**.js, **.json]
 trim_trailing_whitespace = true
 indent_style = tab
@@ -31,6 +31,6 @@ indent_style = tab
 [**.md]
 indent_style = tab
 
-# Standard at:
+# Standard at: 
 [Makefile]
 indent_style = tab

@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 echo "Generating self-signed certificates..."
 openssl genrsa -out ./config/sslcerts/key.pem -aes256 1024
 openssl req -new -key ./config/sslcerts/key.pem -out ./config/sslcerts/csr.pem

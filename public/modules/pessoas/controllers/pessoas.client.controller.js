@@ -66,187 +66,159 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 		/*
 		** valida as datas inseridas e verifica os dias meses anos e se e ano bisexto
 		*/
-		$scope.validateData = function(valor){
+		$scope.validateData = function(valor){if (valor !== undefined) {
 			dia = valor.substring(0,2);
 			mes = valor.substring(2,4);
 			ano = valor.substring(4,9);
 
-			if (ano > 1900 && ano < 5100) {
-
-					if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
-
-							if ((mes === '04' || mes === '06' || mes === '09' || mes === 11) && dia > 30) {
-								 	$scope.dataValida = false;
-
-						   } else if (mes === '02') {
-						    	if (ano%4 === 0 && dia > 29) {
+			if (ano > 1900 && ano < 2100) {
+				if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
+					if ((mes === '04' || mes === '06' || mes === '09' || mes === '11') && dia > 30) {
+									$scope.dataValida = false;
+						 } else if (mes === '02') {
+									if (ano%4 === 0 && dia > 29) {
 											$scope.dataValida = false;
-
-							    } else if (ano%4 !== 0 && dia > 28) {
+									} else if (ano%4 !== 0 && dia > 28) {
 											$scope.dataValida = false;
-
-							    } else {
+										 } else {
 										$scope.dataValida = true;
-									}
-
-					   	} else {
+											 }
+						} else {
 								$scope.dataValida = true;
 							}
-
-					} else {
+						 } else {
 						$scope.dataValida = false;
-
-					}
-				}
-		};
+								}
+				} else {
+				$scope.dataValida = false;
+		}
+		}};
 
 		/*
 		** valida as datas inseridas e verifica os dias meses anos e se e ano bisexto
 		*/
 		$scope.validateDataNascimento = function(valor){
-			dia = valor.substring(0,2);
-			mes = valor.substring(2,4);
-			ano = valor.substring(4,9);
+			if (valor !== undefined) {
+				dia = valor.substring(0,2);
+				mes = valor.substring(2,4);
+				ano = valor.substring(4,9);
 
-			if (ano > 1900 && ano < 5100) {
-
+				if (ano > 1900 && ano < 2100) {
 					if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
-
-							if ((mes === '04' || mes === '06' || mes === '09' || mes === 11) && dia > 30) {
-								 	$scope.dataNascimentoValida = false;
-
-						   } else if (mes === '02') {
-						    	if (ano%4 === 0 && dia > 29) {
-											$scope.dataNascimentoValida = false;
-
-							    } else if (ano%4 !== 0 && dia > 28) {
-											$scope.dataNascimentoValida = false;
-
-							    } else {
-										$scope.dataNascimentoValida = true;
+						if ((mes === '04' || mes === '06' || mes === '09' || mes === '11') && dia > 30) {
+										$scope.dataNascimentoValida = false;
+							 } else if (mes === '02') {
+										if (ano%4 === 0 && dia > 29) {
+												$scope.dataNascimentoValida = false;
+										} else if (ano%4 !== 0 && dia > 28) {
+												$scope.dataNascimentoValida = false;
+											 } else {
+											$scope.dataNascimentoValida = true;
+												 }
+							} else {
+									$scope.dataNascimentoValida = true;
+								}
+							 } else {
+							$scope.dataNascimentoValida = false;
 									}
-
-					   	} else {
-								$scope.dataNascimentoValida = true;
-							}
-
 					} else {
-						$scope.dataNascimentoValida = false;
-
-					}
-				}
-		};
+					$scope.dataNascimentoValida = false;
+			}
+			}};
 
 		/*
 		** valida as datas inseridas e verifica os dias meses anos e se e ano bisexto
 		*/
-		$scope.validateDataAdmissao = function(valor){
+		$scope.validateDataAdmissao = function(valor){if (valor !== undefined) {
 			dia = valor.substring(0,2);
 			mes = valor.substring(2,4);
 			ano = valor.substring(4,9);
 
-			if (ano > 1900 && ano < 5100) {
-
-					if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
-
-							if ((mes === '04' || mes === '06' || mes === '09' || mes === 11) && dia > 30) {
-									$scope.dataAdmissaoValida = false;
-
-							 } else if (mes === '02') {
-									if (ano%4 === 0 && dia > 29) {
+			if (ano > 1900 && ano < 2100) {
+				if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
+					if ((mes === '04' || mes === '06' || mes === '09' || mes === '11') && dia > 30) {
+								 	$scope.dataAdmissaoValida = false;
+					   } else if (mes === '02') {
+						    	if (ano%4 === 0 && dia > 29) {
 											$scope.dataAdmissaoValida = false;
-
-									} else if (ano%4 !== 0 && dia > 28) {
+							    } else if (ano%4 !== 0 && dia > 28) {
 											$scope.dataAdmissaoValida = false;
-
-									} else {
+					           } else {
 										$scope.dataAdmissaoValida = true;
-									}
-
-							} else {
+									     }
+				   	} else {
 								$scope.dataAdmissaoValida = true;
 							}
-
-					} else {
+						 } else {
 						$scope.dataAdmissaoValida = false;
-
-					}
-				}
-		};
+			    			}
+				} else {
+				$scope.dataAdmissaoValida = false;
+		}
+	}};
 
 		/*
 		** valida as datas inseridas e verifica os dias meses anos e se e ano bisexto
 		*/
-		$scope.validateDataDemissao = function(valor){
+		$scope.validateDataDemissao = function(valor){	if (valor !== undefined) {
 			dia = valor.substring(0,2);
 			mes = valor.substring(2,4);
 			ano = valor.substring(4,9);
 
-			if (ano > 1900 && ano < 5100) {
-
-					if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
-
-							if ((mes === '04' || mes === '06' || mes === '09' || mes === 11) && dia > 30) {
+			if (ano > 1900 && ano < 2100) {
+				if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
+					if ((mes === '04' || mes === '06' || mes === '09' || mes === '11') && dia > 30) {
 								 	$scope.dataDemissaoValida = false;
-
-						   } else if (mes === '02') {
+					   } else if (mes === '02') {
 						    	if (ano%4 === 0 && dia > 29) {
 											$scope.dataDemissaoValida = false;
-
 							    } else if (ano%4 !== 0 && dia > 28) {
 											$scope.dataDemissaoValida = false;
-
-							    } else {
+					           } else {
 										$scope.dataDemissaoValida = true;
-									}
-
-					   	} else {
+									     }
+				   	} else {
 								$scope.dataDemissaoValida = true;
 							}
-
-					} else {
+						 } else {
 						$scope.dataDemissaoValida = false;
-
-					}
-				}
-		};
+			    			}
+				} else {
+				$scope.dataDemissaoValida = false;
+		}
+	}};
 
 		/*
 		** valida as datas inseridas e verifica os dias meses anos e se e ano bisexto
 		*/
 		$scope.validateDataNascimentoDependente = function(valor){
+			if (valor !== undefined) {
 			dia = valor.substring(0,2);
 			mes = valor.substring(2,4);
 			ano = valor.substring(4,9);
 
-			if (ano > 1900 && ano < 5100) {
-
-					if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
-
-							if ((mes === '04' || mes === '06' || mes === '09' || mes === 11) && dia > 30) {
+			if (ano > 1900 && ano < 2100) {
+				if (dia > 0 && dia < 31 && mes > 0 && mes < 12) {
+					if ((mes === '04' || mes === '06' || mes === '09' || mes === '11') && dia > 30) {
 								 	$scope.dataNascimentoDependenteValida = false;
-
-						   } else if (mes === '02') {
+					   } else if (mes === '02') {
 						    	if (ano%4 === 0 && dia > 29) {
 											$scope.dataNascimentoDependenteValida = false;
-
 							    } else if (ano%4 !== 0 && dia > 28) {
 											$scope.dataNascimentoDependenteValida = false;
-
-							    } else {
+					           } else {
 										$scope.dataNascimentoDependenteValida = true;
-									}
-
-					   	} else {
+									     }
+				   	} else {
 								$scope.dataNascimentoDependenteValida = true;
 							}
-
-					} else {
+						 } else {
 						$scope.dataNascimentoDependenteValida = false;
-
-					}
-				}
-		};
+			    			}
+				} else {
+				$scope.dataNascimentoDependenteValida = false;
+		}
+	}};
 
 		/*
 		** validacao do cpf passo a passo conferindo os noves primeiros numeros e depois verificando se os digitos
@@ -310,6 +282,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 			resultadoPrimeiroNumero = 0;
 			resultadoSegundoNumero = 0;
 			j = 10;
+			if(valor !== undefined){
 			var numero = valor.toString();
 			if (valor === '00000000000' ||
         valor === '11111111111' || valor === '22222222222' ||
@@ -350,6 +323,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 				}
 			}
 			$rootScope.valido = booleano;
+		}
 		};
 
 		/*
@@ -378,11 +352,21 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 
 		//metodo para inserir valores no array de dependentes usando o push
 		$scope.addArray = function(dependentes){
+
+			var cpf = '';
+			if(dependentes.cpfDependente === undefined){
+					cpf = dependentes.cpfDependente;
+			}
+
+			var data = dependentes.dataNascimentoDependente.substring(0, 2) + '-' +
+				dependentes.dataNascimentoDependente.substring(2, 4) + '-' +
+				dependentes.dataNascimentoDependente.substring(4, 8);
+
 				$scope.arrayDependentes.push({
 		        nomeDependente: dependentes.nomeDependente,
 		        parentesco: dependentes.parentesco,
-						cpfDependente: dependentes.cpfDependente,
-						dataNascimentoDependente: dependentes.dataNascimentoDependente
+						cpfDependente: cpf,
+						dataNascimentoDependente: data
 		    });
 
 				//limpar os campos
@@ -390,12 +374,41 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 				dependentes.parentesco = '';
 				dependentes.cpfDependente = '';
 				dependentes.dataNascimentoDependente = '';
+				cpf = '';
+				data = '';
+		};
+		//metodo para inserir valores no array de dependentes usando o push na edição
+		$scope.addArrayEdt = function(dependentes){
+
+			var cpf = '';
+			if(dependentes.cpfDependente === undefined){
+					cpf = dependentes.cpfDependente;
+			}
+
+			var data = dependentes.dataNascimentoDependente.substring(0, 2) + '-' +
+				dependentes.dataNascimentoDependente.substring(2, 4) + '-' +
+				dependentes.dataNascimentoDependente.substring(4, 8);
+
+				$scope.pessoa.dependentes.push({
+		        nomeDependente: dependentes.nomeDependente,
+		        parentesco: dependentes.parentesco,
+						cpfDependente: cpf,
+						dataNascimentoDependente: data
+		    });
+
+				//limpar os campos
+				dependentes.nomeDependente = '';
+				dependentes.parentesco = '';
+				dependentes.cpfDependente = '';
+				dependentes.dataNascimentoDependente = '';
+				cpf = '';
+				data = '';
 		};
 
 		/*
 		** pego o dependente selecionado
 		*/
-		$scope.selecionado = function (dependentes) {
+		$scope.selecionado = function (dependentes) {//problema para selecionar o dependente no editar
 				$scope.dependentes = dependentes;
 				$rootScope.rendered = true;
 		};
@@ -423,11 +436,19 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 		};
 
 		/*
-		** deletando o item da tabela de dependentes
+		** deletando o item da tabela de dependentes no criar
 		*/
 		$scope.deletarItemArray = function(dependentes) {
 		  var index = $scope.arrayDependentes.indexOf(dependentes);
 		  $scope.arrayDependentes.splice(index, 1);
+		};
+
+		/*
+		** deletando o item da tabela de dependentes na tela de editar
+		*/
+		$scope.deletarItemArrayEdt = function(dependentes) {
+		  var index = $scope.pessoa.dependentes.indexOf(dependentes);
+		  $scope.pessoa.dependentes.splice(index, 1);
 		};
 
 		/*
@@ -453,6 +474,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 
 			$rootScope.rendered = false;
 		};
+
 
 		// Create new Pessoa
 		$scope.create = function() {
@@ -480,6 +502,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 				estadoCivil: this.estadoCivil,
 				cartaoMilhas: this.cartaoMilhas,
 				percentual: this.percentual,
+				grupoSocial: this.grupoSocial,
 				dependentes: $scope.arrayDependentes
 			});
 
@@ -551,6 +574,7 @@ angular.module('pessoas').controller('PessoasController', ['$scope', '$statePara
 					$scope.celular = '';
 					$scope.trabalho = '';
 					$scope.percentual = '';
+					$scope.grupoSocial = '';
 					$rootScope.show = false;
 					$rootScope.rendered = false;
 					$scope.arrayCPF = [];

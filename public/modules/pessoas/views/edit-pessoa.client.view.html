@@ -1,3 +1,5 @@
+<html lang="pt-BR">
+
 <section data-ng-controller="PessoasController" data-ng-init="findOne()">
     <div class="page-header">
         <h1>Editar Pessoa</h1>
@@ -12,7 +14,7 @@
                       <li>
                         <input type="radio" checked name="tabs" id="tab1">
 
-                        <label for="tab1">Pessoais</label>
+                        <label for="tab1">Dados</label>
                         <div id="tab-content1" class="tab-content animated fadeIn">
                             <label for="nome">Nome*</label>
                             <div class="controls">
@@ -20,7 +22,7 @@
                                 ng-blur="nameValidate(pessoa.nome)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!firstNameValidate">
+                            <div class="alert alert-danger" ng-if="!firstNameValidate">
                                 Nome é um campo obrigatório.
                             </div>
 
@@ -29,7 +31,7 @@
                                 <input type="text" data-ng-model="pessoa.sobrenome" id="sobrenome" class="form-control" name="sobrenome"
                                 ng-blur="secNameValidate(pessoa.sobrenome)">
                             </div>
-                            <div class="alert alert-danger" ng-show="!secondNameValidate">
+                            <div class="alert alert-danger" ng-if="!secondNameValidate">
                                 Sobrenome é um campo obrigatório.
                             </div>
 
@@ -39,7 +41,7 @@
                                   ng-blur="validateDataNascimento(pessoa.dataNascimento)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!dataNascimentoValida">
+                            <div class="alert alert-danger" ng-if="!dataNascimentoValida">
                                 Data de Nascimento inválida.
                             </div>
 
@@ -49,7 +51,7 @@
                                 ng-blur="validateEmail(pessoa.email)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!emailValidate">
+                            <div class="alert alert-danger" ng-if="!emailValidate">
                                 Email inválido.
                             </div>
 
@@ -155,48 +157,47 @@
                             <div>
                             <label >Nome Dependente</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="pessoa.dependentes.nomeDependente" id="nomeDependente" name="nomeDependente" class="form-control">
+                                <input type="text" data-ng-model="dependentes.nomeDependente" id="nomeDependente" name="nomeDependente" class="form-control">
                             </div>
 
                             <label>Parentesco</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="pessoa.dependentes.parentesco" id="parentesco" name="parentesco" class="form-control">
+                                <input type="text" data-ng-model="dependentes.parentesco" id="parentesco" name="parentesco" class="form-control">
                             </div>
 
                             <label>Data de Nascimento</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="pessoa.dependentes.dataNascimentoDependente" id="dataNascimentoDependente" name="dataNascimentoDependente" class="form-control"
-                                ng-blur="validateDataNascimentoDependente(pessoa.dependentes.dataNascimentoDependente)" ui-mask="99/99/9999">
+                                <input type="text" data-ng-model="dependentes.dataNascimentoDependente" id="dataNascimentoDependente" name="dataNascimentoDependente" class="form-control"
+                                ng-blur="validateDataNascimentoDependente(dependentes.dataNascimentoDependente)" ui-mask="99/99/9999">
                             </div>
-
-                            <div class="alert alert-danger" ng-show="!dataNascimentoDependenteValida">
-                                Data de Nascimento do Dependente inválida.
+                            <!-- <div class="controls">
+<input type="date" data-ng-model="dependentes.dataNascimentoDependente" maxlength="10" name="dataNascimentoDependente"
+ id="dataNascimentoDependente" class="form-control" ui-mask="99/99/9999" min="01/01/2012" max="01/01/2030" />
+                            </div> -->
+                            <div class="alert alert-danger alert-dismissible" ng-if="!dataNascimentoDependenteValida">
+                                  Data de Nascimento do Dependente inválida.
                             </div>
 
                             <label >CPF</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="pessoa.dependentes.cpfDependente" id="cpfDependente" name="cpfDependente" class="form-control"
-                                ng-blur="validateCPFDependente(pessoa.dependentes.cpfDependente)" ui-mask="999.999.999-99">
+                                <input type="text" data-ng-model="dependentes.cpfDependente" id="cpfDependente" name="cpfDependente" class="form-control"
+                                ng-blur="validateCPFDependente(dependentes.cpfDependente)" ui-mask="999.999.999-99">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!validoDependente">
+                            <div class="alert alert-danger" ng-if="!validoDependente">
                                 CPF inválido.
                             </div>
 
                             <br/>
 
-                            <div class="form-group" ng-show="!rendered">
-                                <input type="button" class="btn btn-default" ng-click="addArray(pessoa.dependentes)" value="Adicionar Dependente"
-                                ng-disabled="!pessoa.dependentes.nomeDependente || !pessoa.dependentes.parentesco || !pessoa.dependentes.dataNascimentoDependente">
-                            </div>
+                            <div class="form-group" style="text-align:center;">
+                                <input type="button" ng-if="!rendered" class="btn btn-default" ng-click="addArrayEdt(dependentes)" value="Adicionar"
+                                ng-disabled="!dependentes.nomeDependente || !dependentes.parentesco || !dependentes.dataNascimentoDependente">
 
-                            <div class="form-group" ng-show="rendered">
-                                <input type="button" class="btn btn-default" ng-click="edtArray(pessoa.dependentes)" value="Atualizar Dependente"
-                                ng-disabled="!pessoa.dependentes.nomeDependente || !pessoa.dependentes.parentesco || !pessoa.dependentes.dataNascimentoDependente">
-                            </div>
+                                <!-- <input type="button" ng-if="rendered" class="btn btn-default" ng-click="edtArray(pessoa.dependentes)" value="Atualizar"
+                                ng-disabled="!pessoa.dependentes.nomeDependente || !pessoa.dependentes.parentesco || !pessoa.dependentes.dataNascimentoDependente"> -->
 
-                            <div class="form-group">
-                                <input type="button" class="btn btn-default" ng-click="clear(pessoa.dependentes)" value="Cancelar Dependentes">
+                                <input type="button" class="btn btn-default" ng-click="clear(dependentes)" value="Limpar">
                             </div>
 
                             <table id="dependentesPessoa" class="tabela tabela-bordered tabela-hover tabela-condensed" style="width: 100%">
@@ -207,18 +208,18 @@
                                   <th>CPF</th>
                                   <th>Data de Nascimento</th>
                                   <th>Ações</th>
-
                                </tr>
                              </thead>
                              <tbody>
-                               <tr ng-repeat = "dep in pessoa.dependente">
+                               <!-- <tr ng-repeat = "dep in pessoa.dependentes"> -->
+                               <tr ng-repeat = "dep in pessoa.dependentes">
                                     <td>{{dep.nomeDependente}}</td>
                                     <td>{{dep.parentesco}}</td>
                                     <td>{{dep.cpfDependente}}</td>
-                                    <td>{{dep.dataNascimentoDependente | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{dep.dataNascimentoDependente}}</td>
                                     <td><a class="btn btn-primary" data-ng-click="selecionado(dep);">
                                           <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-                                        <a class="btn btn-primary" data-ng-click="deletarItemArray(dep)">
+                                        <a class="btn btn-primary" data-ng-click="deletarItemArrayEdt(dep)">
                                           <i class="glyphicon glyphicon-trash"></i></a></td>
                                </tr>
                              </tbody>
@@ -237,17 +238,17 @@
                                 <input type="text" data-ng-model="pessoa.cpf" id="cpf" class="form-control" ui-mask="999.999.999-99"
                                   ng-blur="validateCPF(pessoa.cpf)" maxlength="11" required>
                             </div>
-                            <div class="alert alert-danger" ng-show="!cpfValidate">
+                            <div class="alert alert-danger" ng-if="!cpfValidate">
                                 CPF é um campo obrigatório.
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!valido">
+                            <div class="alert alert-danger" ng-if="!valido">
                                 CPF inválido.
                             </div>
 
                             <label >Identidade</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="pessoa.rg.nrRG" id="Identidade" class="form-control"  ui-mask="99999999-9">
+                                <input type="text" data-ng-model="pessoa.rg.nrRG" id="Identidade" class="form-control" maxlength="11" size="11">
                             </div>
 
                             <label >Data de Expedição</label>
@@ -256,7 +257,7 @@
                                 ng-blur="validateData(pessoa.rg.dataExpedicao)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!dataValida">
+                            <div class="alert alert-danger" ng-if="!dataValida">
                                 Data de Expedição inválida.
                             </div>
 
@@ -367,6 +368,7 @@
                                   <option value="Casado(a)">Casado(a)</option>
                                   <option value="Divorciado(a)">Divorciado(a)</option>
                                   <option value="Viúvo(a)">Viúvo(a)</option>
+                                  <option value="União Estável">União Estável</option>
                                 </select>
                             </div>
 
@@ -421,7 +423,7 @@
                                 ng-blur="validateDataAdmissao(pessoa.dataAdmissao)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!dataAdmissaoValida">
+                            <div class="alert alert-danger" ng-if="!dataAdmissaoValida">
                                 Data de Admissão inválida.
                             </div>
 
@@ -431,8 +433,13 @@
                                 ng-blur="validateDataDedmissao(pessoa.dataDemissao)">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!dataDemissaoValida">
+                            <div class="alert alert-danger" ng-if="!dataDemissaoValida">
                                 Data de Demissão inválida.
+                            </div>
+
+                            <label>Grupo Social</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="pessoa.grupoSocial" id="grupoSocial" class="form-control" >
                             </div>
                         </div>
                       </li>
@@ -440,24 +447,22 @@
                       <!-- tab de confirmar -->
                       <li>
                         <input type="radio" name="tabs" id="tab11">
-                        <label for="tab11">Finalizar</label>
+                        <label for="tab11">Confirmar</label>
                         <div id="tab-content3" class="tab-content animated fadeIn">
-                            <div class="form-group" style="text-align:center">
-                                <input style="text-align-last:center;" type="submit" value="Salvar" class="btn btn-default">
-                            </div>
                             <div class="form-group" style="text-align:center;">
+                                <input type="submit" value="Salvar" class="btn btn-default"> &nbsp;
                                 <input type="button" onclick="parent.location='/#!/pessoas'" value="Cancelar Edição" class="btn btn-default">
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!firstNameValidate">
+                            <div class="alert alert-danger" ng-if="!firstNameValidate">
                                 Preencha o campo Nome na aba Dados.
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!secondNameValidate">
+                            <div class="alert alert-danger" ng-if="!secondNameValidate">
                                 Preencha o campo Sobrenome na aba Dados.
                             </div>
 
-                            <div class="alert alert-danger" ng-show="!cpfValidate">
+                            <div class="alert alert-danger" ng-if="!cpfValidate">
                                 Preencha o campo CPF na aba Documentos.
                             </div>
                         </div>
@@ -467,7 +472,7 @@
 
             </div>
 
-				<!--div data-ng-show="error" class="text-danger">
+				<!--div data-ng-if="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div-->
             </fieldset>

@@ -12,7 +12,7 @@
           			        <li>
           			          <input type="radio" checked name="tabs" id="tab1">
 
-          			          <label for="tab1">Pessoais</label>
+          			          <label for="tab1">Dados</label>
           			          <div id="tab-content1" class="tab-content animated fadeIn">
                               <label for="nome">Nome*</label>
                               <div class="controls">
@@ -185,17 +185,13 @@
 
                               <br/>
 
-                              <div class="form-group" ng-show="!rendered">
-                                  <input type="button" class="btn btn-default" ng-click="addArray(dependentes)" value="Adicionar"
+                              <div class="form-group" style="text-align:center;">
+                                  <input type="button" ng-show="!rendered" class="btn btn-default" ng-click="addArray(dependentes)" value="Adicionar"
                                   ng-disabled="!dependentes.nomeDependente || !dependentes.parentesco || !dependentes.dataNascimentoDependente">
-                              </div>
 
-                              <div class="form-group" ng-show="rendered">
-                                  <input type="button" class="btn btn-default" ng-click="edtArray(dependentes)" value="Atualizar"
+                                  <input type="button" ng-show="rendered" class="btn btn-default" ng-click="edtArray(dependentes)" value="Atualizar"
                                   ng-disabled="!dependentes.nomeDependente || !dependentes.parentesco || !dependentes.dataNascimentoDependente">
-                              </div>
 
-                              <div class="form-group">
                                   <input type="button" class="btn btn-default" ng-click="clear(dependentes)" value="Limpar">
                               </div>
 
@@ -207,7 +203,6 @@
                                     <th>CPF</th>
                                     <th>Data de Nascimento</th>
                                     <th>Ações</th>
-
                                  </tr>
                                </thead>
                                <tbody>
@@ -215,7 +210,7 @@
                                       <td>{{dep.nomeDependente}}</td>
                                       <td>{{dep.parentesco}}</td>
                                       <td>{{dep.cpfDependente}}</td>
-                                      <td>{{dep.dataNascimentoDependente | date: 'dd/MM/yyyy'}}</td>
+                                      <td>{{dep.dataNascimentoDependente}}</td>
                                       <td><a class="btn btn-primary" data-ng-click="selecionado(dep);">
                                             <i class="glyphicon glyphicon-edit"></i></a>&nbsp;
                                           <a class="btn btn-primary" data-ng-click="deletarItemArray(dep)">
@@ -247,7 +242,7 @@
 
                               <label >Identidade</label>
                               <div class="controls">
-                                  <input type="text" data-ng-model="rg.nrRG" id="Identidade" class="form-control"  ui-mask="99999999-9">
+                                  <input type="text" data-ng-model="rg.nrRG" id="Identidade" class="form-control" maxlength="11" size="11">
                               </div>
 
                               <label >Data de Expedição</label>
@@ -367,6 +362,7 @@
                                     <option value="Casado(a)">Casado(a)</option>
                                     <option value="Divorciado(a)">Divorciado(a)</option>
                                     <option value="Viúvo(a)">Viúvo(a)</option>
+                                    <option value="União Estável">União Estável</option>
                                   </select>
                               </div>
 
@@ -434,19 +430,21 @@
                               <div class="alert alert-danger" ng-show="!dataDemissaoValida">
                                   Data de Demissão inválida.
                               </div>
+
+                              <label>Grupo Social</label>
+                              <div class="controls">
+                                  <input type="text" data-ng-model="grupoSocial" id="grupoSocial" class="form-control" >
+                              </div>
                           </div>
           			        </li>
 
                         <!-- tab de confirmar -->
                         <li>
           			          <input type="radio" name="tabs" id="tab11">
-                          <label for="tab11">Finalizar</label>
-                          <div id="tab-content3" class="tab-content animated fadeIn">
+          			          <label for="tab11">Confirmar</label>
+          			          <div id="tab-content3" class="tab-content animated fadeIn">
                               <div class="form-group" style="text-align:center;">
-                                  <input style="text-align-last:center;" type="submit" value="Salvar" class="btn btn-default">
-                              </div>
-                              <div class="form-group" style="text-align:center;">
-                                  <input type="button" onclick="parent.location='/#!/pessoas'" value="Cancelar" class="btn btn-default">
+                                  <input type="submit" class="btn btn-default" value="Salvar" >
                               </div>
 
                               <div class="alert alert-danger" ng-show="!firstNameValidate">
